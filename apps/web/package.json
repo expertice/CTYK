@@ -1,0 +1,26 @@
+{
+  "name": "web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "verify:psych-full-dictionary": "node scripts/verify-psych-full-dictionary.mjs",
+    "models:pyannote-offline": "python scripts/local-models/download_pyannote_offline_bundle.py"
+  },
+  "dependencies": {
+    "marked": "^17.0.6",
+    "next": "^16.0.0",
+    "pdf-lib": "^1.17.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "typescript": "^5.0.0"
+  }
+}

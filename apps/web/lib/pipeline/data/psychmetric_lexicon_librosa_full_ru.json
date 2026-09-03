@@ -1,0 +1,320 @@
+{
+  "version": "1.0",
+  "patterns": [
+    {
+      "id": "initiative_takeover",
+      "label": "initiative_takeover",
+      "minMatchCount": 2,
+      "rules": [
+        {
+          "metric": "rmsMeanDb",
+          "direction": "high",
+          "threshold_sd": 1.0
+        },
+        {
+          "metric": "charsPerSec",
+          "direction": "high",
+          "threshold_sd": 0.8
+        },
+        {
+          "metric": "silenceRatio",
+          "direction": "low",
+          "threshold_sd": 0.8
+        }
+      ],
+      "score_weights": {
+        "rmsMeanDb": 0.4,
+        "charsPerSec": 0.35,
+        "silenceRatio": 0.25
+      },
+      "interpretation": "Спикер перехватывает инициативу: говорит громче, быстрее и почти без пауз.",
+      "behavioralHint": "Отмечать как блок перехвата инициативы; возможное начало конфронтации.",
+      "caveats": [
+        "Может быть кооперативным вовлечением, а не агрессией.",
+        "Проверять текст: нет ли признаков совместного поиска решений."
+      ],
+      "doNotInfer": [
+        "Не делать выводов о личности (например, 'агрессивный тип').",
+        "Не ставить клинические или психиатрические диагнозы по этим признакам."
+      ]
+    },
+    {
+      "id": "cognitive_load_or_evasion",
+      "label": "cognitive_load_or_evasion",
+      "minMatchCount": 2,
+      "rules": [
+        {
+          "metric": "charsPerSec",
+          "direction": "low",
+          "threshold_sd": 1.0
+        },
+        {
+          "metric": "silenceRatio",
+          "direction": "high",
+          "threshold_sd": 1.5
+        },
+        {
+          "metric": "spectralFlux",
+          "direction": "high",
+          "threshold_sd": 0.8
+        }
+      ],
+      "score_weights": {
+        "charsPerSec": 0.35,
+        "silenceRatio": 0.45,
+        "spectralFlux": 0.2
+      },
+      "interpretation": "Высокая когнитивная нагрузка или уход от ответа: речь замедляется, растёт доля пауз и спектральная нестабильность.",
+      "behavioralHint": "Помечать как эпизод высокой нагрузки/уклонения; стоит внимательно посмотреть на содержание вопроса перед этим фрагментом.",
+      "caveats": [
+        "Может быть связан с поиском формулировки, усталостью или особенностями речи.",
+        "У носителей иностранного языка и пожилых спикеров такие паттерны часто являются нормой."
+      ],
+      "doNotInfer": [
+        "Не делать вывод о лжи или манипуляции только по акустическим данным.",
+        "Не использовать для принятия юридически значимых решений."
+      ]
+    },
+    {
+      "id": "emotional_activation_peak",
+      "label": "emotional_activation_peak",
+      "minMatchCount": 2,
+      "rules": [
+        {
+          "metric": "rmsMeanDb",
+          "direction": "high",
+          "threshold_sd": 1.2
+        },
+        {
+          "metric": "spectralCentroidMeanHz",
+          "direction": "high",
+          "threshold_sd": 1.0
+        },
+        {
+          "metric": "spectralRolloffMeanHz",
+          "direction": "high",
+          "threshold_sd": 1.0
+        }
+      ],
+      "score_weights": {
+        "rmsMeanDb": 0.4,
+        "spectralCentroidMeanHz": 0.3,
+        "spectralRolloffMeanHz": 0.3
+      },
+      "interpretation": "Пик эмоционального возбуждения: голос становится громче и ярче по спектру.",
+      "behavioralHint": "Помечать как эмоциональный пик; часто совпадает с ключевыми поворотными моментами дискуссии.",
+      "caveats": [
+        "Может быть связан с положительными эмоциями (энтузиазм), а не только с конфликтом.",
+        "Сравнивать с базовым уровнем конкретного спикера, а не с другими участниками."
+      ],
+      "doNotInfer": [
+        "Не делать выводов о 'вспышках агрессии' без анализа текста.",
+        "Не трактовать как симптом психического расстройства."
+      ]
+    },
+    {
+      "id": "emotional_deactivation",
+      "label": "emotional_deactivation",
+      "minMatchCount": 2,
+      "rules": [
+        {
+          "metric": "rmsMeanDb",
+          "direction": "low",
+          "threshold_sd": 1.0
+        },
+        {
+          "metric": "spectralCentroidMeanHz",
+          "direction": "low",
+          "threshold_sd": 1.0
+        },
+        {
+          "metric": "charsPerSec",
+          "direction": "low",
+          "threshold_sd": 0.8
+        }
+      ],
+      "score_weights": {
+        "rmsMeanDb": 0.4,
+        "spectralCentroidMeanHz": 0.3,
+        "charsPerSec": 0.3
+      },
+      "interpretation": "Эмоциональное снижение/выход: голос тише, темп падает, спектр смещается вниз.",
+      "behavioralHint": "Отмечать как фазу снижения напряжения или усталости после активной части разговора.",
+      "caveats": [
+        "Может отражать переход к более аналитическому обсуждению, а не эмоциональное выгорание.",
+        "У некоторых спикеров монотонная речь является нормой и не связана с эмоциями."
+      ],
+      "doNotInfer": [
+        "Не трактовать как 'депрессию' или другое расстройство настроения.",
+        "Не делать выводов о мотивации (например, 'потерял интерес') только по просодии."
+      ]
+    },
+    {
+      "id": "interruption_risk",
+      "label": "interruption_risk",
+      "minMatchCount": 2,
+      "rules": [
+        {
+          "metric": "charsPerSec",
+          "direction": "high",
+          "threshold_sd": 1.0
+        },
+        {
+          "metric": "silenceRatio",
+          "direction": "low",
+          "threshold_sd": 1.0
+        }
+      ],
+      "score_weights": {
+        "charsPerSec": 0.6,
+        "silenceRatio": 0.4
+      },
+      "interpretation": "Риск перебивания: спикер ускоряется и почти не оставляет пауз.",
+      "behavioralHint": "Отмечать как участок, где другим участникам сложно вклиниться в разговор.",
+      "caveats": [
+        "Может соответствовать ограниченному по времени слоту (например, отчёт по таймеру).",
+        "Требует проверки, были ли реальные попытки других участников войти в диалог."
+      ],
+      "doNotInfer": [
+        "Не делать выводов о неуважении или нарушении норм, если контекст не подтверждает этого.",
+        "Не использовать для оценки профессиональных качеств спикера."
+      ]
+    },
+    {
+      "id": "turn_yielding",
+      "label": "turn_yielding",
+      "minMatchCount": 2,
+      "rules": [
+        {
+          "metric": "charsPerSec",
+          "direction": "low",
+          "threshold_sd": 0.8
+        },
+        {
+          "metric": "silenceRatio",
+          "direction": "high",
+          "threshold_sd": 1.0
+        }
+      ],
+      "score_weights": {
+        "charsPerSec": 0.5,
+        "silenceRatio": 0.5
+      },
+      "interpretation": "Сдача хода: спикер замедляется и увеличивает паузы, открывая пространство для других.",
+      "behavioralHint": "Помечать как естественный переход инициативы к другим участникам.",
+      "caveats": [
+        "Может быть вызвано обращением к записям или документам, а не желанием уступить слово.",
+        "Учитывать, использует ли спикер вербальные маркеры типа 'как вы думаете?'."
+      ],
+      "doNotInfer": [
+        "Не трактовать как пассивность или неуверенность без текстовых маркеров.",
+        "Не делать выводов о статусе спикера в иерархии."
+      ]
+    },
+    {
+      "id": "dominance_pattern",
+      "label": "dominance_pattern",
+      "minMatchCount": 2,
+      "rules": [
+        {
+          "metric": "rmsMeanDb",
+          "direction": "high",
+          "threshold_sd": 0.8
+        },
+        {
+          "metric": "charsPerSec",
+          "direction": "high",
+          "threshold_sd": 0.8
+        },
+        {
+          "metric": "spectralCentroidMeanHz",
+          "direction": "neutral",
+          "threshold_sd": 0.0
+        }
+      ],
+      "score_weights": {
+        "rmsMeanDb": 0.4,
+        "charsPerSec": 0.4,
+        "spectralCentroidMeanHz": 0.2
+      },
+      "interpretation": "Доминирующий паттерн: спикер говорит громко и быстро на протяжении значимой части разговора.",
+      "behavioralHint": "Сопоставлять с долей эфирного времени и частотой инициативных ходов.",
+      "caveats": [
+        "Может отражать роль модератора или ведущего, а не стремление доминировать.",
+        "В некоторых культурах более высокая громкость и скорость являются нормой общения."
+      ],
+      "doNotInfer": [
+        "Не делать выводов о личностных чертах (доминирующая / авторитарная личность).",
+        "Не использовать для оценки лидерских качеств без контекстного анализа."
+      ]
+    },
+    {
+      "id": "submission_pattern",
+      "label": "submission_pattern",
+      "minMatchCount": 2,
+      "rules": [
+        {
+          "metric": "rmsMeanDb",
+          "direction": "low",
+          "threshold_sd": 0.8
+        },
+        {
+          "metric": "charsPerSec",
+          "direction": "low",
+          "threshold_sd": 0.8
+        }
+      ],
+      "score_weights": {
+        "rmsMeanDb": 0.5,
+        "charsPerSec": 0.5
+      },
+      "interpretation": "Подчинённый паттерн: спикер говорит тише и медленнее относительно своей базы и других участников.",
+      "behavioralHint": "Использовать как один из индикаторов асимметрии участия в обсуждении.",
+      "caveats": [
+        "Может быть связан с физическими особенностями голоса или микрофона.",
+        "У интровертированных спикеров спокойная манера речи является нормой."
+      ],
+      "doNotInfer": [
+        "Не трактовать как низкую самооценку или выученную беспомощность.",
+        "Не использовать для индивидуальной психологической диагностики."
+      ]
+    },
+    {
+      "id": "rapport_growth",
+      "label": "rapport_growth",
+      "minMatchCount": 2,
+      "rules": [
+        {
+          "metric": "charsPerSec",
+          "direction": "neutral",
+          "threshold_sd": 0.0
+        },
+        {
+          "metric": "rmsMeanDb",
+          "direction": "neutral",
+          "threshold_sd": 0.0
+        },
+        {
+          "metric": "spectralCentroidMeanHz",
+          "direction": "neutral",
+          "threshold_sd": 0.0
+        }
+      ],
+      "score_weights": {
+        "charsPerSec": 0.33,
+        "rmsMeanDb": 0.33,
+        "spectralCentroidMeanHz": 0.34
+      },
+      "interpretation": "Нарастающий раппорт: метрики разных спикеров постепенно сходятся к близким значениям.",
+      "behavioralHint": "Анализировать на уровне группы: использовать агрегированные показатели по всем спикерам.",
+      "caveats": [
+        "Требует достаточно длинной записи для надёжной оценки тренда.",
+        "В формальных совещаниях раппорт может не проявляться явно в акустике."
+      ],
+      "doNotInfer": [
+        "Не делать выводы о 'дружеских отношениях' или 'конфликте' только по конвергенции метрик.",
+        "Не использовать как единственный критерий качества взаимодействия."
+      ]
+    }
+  ]
+}

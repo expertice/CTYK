@@ -1,0 +1,189 @@
+{
+  "version": "1.0",
+  "description": "Парные комбинации метрик, доступные в ENRICHED (ProsodyEnrichedSegment). combinationId — канонический идентификатор для evidence.combinationId в LlmPsychFullV1.",
+  "metricNameAliasesFromExternalDocs": {
+    "spectralRolloffHz": "spectralRolloffMeanHz",
+    "centroid": "spectralCentroidMeanHz",
+    "rolloff": "spectralRolloffMeanHz"
+  },
+  "supportedMetricKeys": [
+    "rmsMeanDb",
+    "zcrMean",
+    "spectralCentroidMeanHz",
+    "spectralRolloffMeanHz",
+    "charsPerSec",
+    "silenceRatio",
+    "spectralFlux",
+    "durationSec"
+  ],
+  "combinations": [
+    {
+      "combinationId": "charsPerSec_x_durationSec",
+      "metricNames": ["charsPerSec", "durationSec"],
+      "label": "Темп речи × длительность сегмента",
+      "summary": "Связка скорости речи и длины реплики; контекст для инициативы и пауз."
+    },
+    {
+      "combinationId": "charsPerSec_x_rmsMeanDb",
+      "metricNames": ["charsPerSec", "rmsMeanDb"],
+      "label": "Темп × энергия (RMS)",
+      "summary": "Классическая пара для перехвата инициативы и эмфазы."
+    },
+    {
+      "combinationId": "charsPerSec_x_silenceRatio",
+      "metricNames": ["charsPerSec", "silenceRatio"],
+      "label": "Темп × доля тишины",
+      "summary": "Когнитивная нагрузка, уход от ответа или вдумчивость."
+    },
+    {
+      "combinationId": "charsPerSec_x_spectralCentroidMeanHz",
+      "metricNames": ["charsPerSec", "spectralCentroidMeanHz"],
+      "label": "Темп × яркость тембра",
+      "summary": "Связка скорости и спектральной «яркости»."
+    },
+    {
+      "combinationId": "charsPerSec_x_spectralFlux",
+      "metricNames": ["charsPerSec", "spectralFlux"],
+      "label": "Темп × спектральная нестабильность",
+      "summary": "Быстрая речь на фоне скачков спектра."
+    },
+    {
+      "combinationId": "charsPerSec_x_spectralRolloffMeanHz",
+      "metricNames": ["charsPerSec", "spectralRolloffMeanHz"],
+      "label": "Темп × rolloff",
+      "summary": "Темп и ширина спектра."
+    },
+    {
+      "combinationId": "charsPerSec_x_zcrMean",
+      "metricNames": ["charsPerSec", "zcrMean"],
+      "label": "Темп × ZCR",
+      "summary": "Скорость речи и текстура (согласные/шум)."
+    },
+    {
+      "combinationId": "durationSec_x_rmsMeanDb",
+      "metricNames": ["durationSec", "rmsMeanDb"],
+      "label": "Длительность × RMS",
+      "summary": "Длинные громкие vs короткие тихие реплики."
+    },
+    {
+      "combinationId": "durationSec_x_silenceRatio",
+      "metricNames": ["durationSec", "silenceRatio"],
+      "label": "Длительность × тишина",
+      "summary": "Паузность внутри сегмента относительно его длины."
+    },
+    {
+      "combinationId": "durationSec_x_spectralCentroidMeanHz",
+      "metricNames": ["durationSec", "spectralCentroidMeanHz"],
+      "label": "Длительность × centroid",
+      "summary": "Длина реплики и тембровая окраска."
+    },
+    {
+      "combinationId": "durationSec_x_spectralFlux",
+      "metricNames": ["durationSec", "spectralFlux"],
+      "label": "Длительность × flux",
+      "summary": "Длина сегмента при нестабильности спектра."
+    },
+    {
+      "combinationId": "durationSec_x_spectralRolloffMeanHz",
+      "metricNames": ["durationSec", "spectralRolloffMeanHz"],
+      "label": "Длительность × rolloff",
+      "summary": "Длина и верхняя граница спектра."
+    },
+    {
+      "combinationId": "durationSec_x_zcrMean",
+      "metricNames": ["durationSec", "zcrMean"],
+      "label": "Длительность × ZCR",
+      "summary": "Длина реплики и прерывистость."
+    },
+    {
+      "combinationId": "rmsMeanDb_x_silenceRatio",
+      "metricNames": ["rmsMeanDb", "silenceRatio"],
+      "label": "Энергия × доля тишины",
+      "summary": "Громкость на фоне пауз; нагрузка и уклонение."
+    },
+    {
+      "combinationId": "rmsMeanDb_x_spectralCentroidMeanHz",
+      "metricNames": ["rmsMeanDb", "spectralCentroidMeanHz"],
+      "label": "Энергия × яркость тембра",
+      "summary": "Надёжная пара для аффективного возбуждения и эскалации."
+    },
+    {
+      "combinationId": "rmsMeanDb_x_spectralFlux",
+      "metricNames": ["rmsMeanDb", "spectralFlux"],
+      "label": "Энергия × flux",
+      "summary": "Громкость и онсет-подобная нестабильность."
+    },
+    {
+      "combinationId": "rmsMeanDb_x_spectralRolloffMeanHz",
+      "metricNames": ["rmsMeanDb", "spectralRolloffMeanHz"],
+      "label": "Энергия × rolloff",
+      "summary": "Громкая широкополосная vs узкополосная речь."
+    },
+    {
+      "combinationId": "rmsMeanDb_x_zcrMean",
+      "metricNames": ["rmsMeanDb", "zcrMean"],
+      "label": "Энергия × ZCR",
+      "summary": "Громкость и текстура; перехват инициативы vs тревожная тихая прерывистость."
+    },
+    {
+      "combinationId": "silenceRatio_x_spectralCentroidMeanHz",
+      "metricNames": ["silenceRatio", "spectralCentroidMeanHz"],
+      "label": "Тишина × centroid",
+      "summary": "Паузность и тембр."
+    },
+    {
+      "combinationId": "silenceRatio_x_spectralFlux",
+      "metricNames": ["silenceRatio", "spectralFlux"],
+      "label": "Тишина × flux",
+      "summary": "Много пауз при спектральной «дрожи»."
+    },
+    {
+      "combinationId": "silenceRatio_x_spectralRolloffMeanHz",
+      "metricNames": ["silenceRatio", "spectralRolloffMeanHz"],
+      "label": "Тишина × rolloff",
+      "summary": "Паузы и полоса спектра."
+    },
+    {
+      "combinationId": "silenceRatio_x_zcrMean",
+      "metricNames": ["silenceRatio", "zcrMean"],
+      "label": "Тишина × ZCR",
+      "summary": "Низкая/высокая доля тишины и прерывистость."
+    },
+    {
+      "combinationId": "spectralCentroidMeanHz_x_spectralFlux",
+      "metricNames": ["spectralCentroidMeanHz", "spectralFlux"],
+      "label": "Centroid × flux",
+      "summary": "Яркость тембра и нестабильность спектра."
+    },
+    {
+      "combinationId": "spectralCentroidMeanHz_x_spectralRolloffMeanHz",
+      "metricNames": ["spectralCentroidMeanHz", "spectralRolloffMeanHz"],
+      "label": "Centroid × rolloff",
+      "summary": "Яркость и верхняя граница спектра."
+    },
+    {
+      "combinationId": "spectralCentroidMeanHz_x_zcrMean",
+      "metricNames": ["spectralCentroidMeanHz", "zcrMean"],
+      "label": "Centroid × ZCR",
+      "summary": "Тембр и микротекстура речи."
+    },
+    {
+      "combinationId": "spectralFlux_x_spectralRolloffMeanHz",
+      "metricNames": ["spectralFlux", "spectralRolloffMeanHz"],
+      "label": "Flux × rolloff",
+      "summary": "Нестабильность и ширина спектра."
+    },
+    {
+      "combinationId": "spectralFlux_x_zcrMean",
+      "metricNames": ["spectralFlux", "zcrMean"],
+      "label": "Flux × ZCR",
+      "summary": "Онсет-активность и ZCR."
+    },
+    {
+      "combinationId": "spectralRolloffMeanHz_x_zcrMean",
+      "metricNames": ["spectralRolloffMeanHz", "zcrMean"],
+      "label": "Rolloff × ZCR",
+      "summary": "Полоса спектра и прерывистость."
+    }
+  ]
+}

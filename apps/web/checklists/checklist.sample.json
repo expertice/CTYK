@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "id": "incidents_last_week",
+      "label": "Разобрать несчастные случаи с прошлой недели",
+      "category": "Охрана труда",
+      "priority": "critical",
+      "weight": 2
+    },
+    {
+      "id": "ppe_check",
+      "label": "Довести информацию о проверке СИЗ",
+      "category": "Охрана труда",
+      "priority": "important",
+      "weight": 1
+    }
+  ]
+}
+

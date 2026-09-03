@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Python
+.venv*/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.Python
+
+# Next.js / build
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+
+# Local ML models, tools, runtime data (multi-GB)
+apps/web/.models/
+apps/web/.tools/
+apps/web/.runs-async/
+apps/web/.scenarios/
+apps/web/uploads/
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# Caches & OS
+.cache/
+*.log
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE / editor
+.cursor/
+.idea/
+.vscode/
+*.code-workspace
+
+# Project dumps / local artifacts
+project_dump.md
+tmp_scenario_payload.json
+apps/web/package-lock.json
+
+# Coverage / test
+coverage/
+.nyc_output/
